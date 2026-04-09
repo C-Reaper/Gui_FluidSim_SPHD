@@ -3,6 +3,8 @@
 #include "/home/codeleaded/System/Static/Library/PerlinNoise.h"
 #include "/home/codeleaded/System/Static/Library/TransformedView.h"
 
+// Based on Smoothed-particle hydrodynamics
+
 #define FLUID_ITER
 #include "/home/codeleaded/System/Static/Library/Fluid.h"
 
@@ -20,7 +22,7 @@ void Setup(AlxWindow* w){
 	);
 	fluid = Fluid_New();
 
-	DENSITY_H = (2.0f * RADIUS);
+	DENSITY_H = (1.0f * RADIUS);
 	DENSITY_WATER = 3000.0f;
 	MASS_PARTICLE = 12000.0f;//(DENSITY_WATER * RADIUS_TERM);
 	DENSITY_K = 10000.0f;
@@ -33,10 +35,14 @@ void Update(AlxWindow* w){
 	Vec2 mouse = TransformedView_ScreenWorldPos(&tv,GetMouse());
 
 	if(Stroke(ALX_KEY_Y).PRESSED){
-		Fluid_Insert(&fluid,(FluidPoint[]){FluidPoint_New(Vec2_Add(
-			mouse,
-			(Vec2){ Random_f64_MinMax(-2.0f * RADIUS,2.0f * RADIUS),Random_f64_MinMax(-2.0f * RADIUS,2.0f * RADIUS) }
-		)) });
+		Fluid_Insert(&fluid,(FluidPoint[]){
+			FluidPoint_New(
+				Vec2_Add(
+					mouse,
+					(Vec2){ Random_f64_MinMax(-2.0f * RADIUS,2.0f * RADIUS),Random_f64_MinMax(-2.0f * RADIUS,2.0f * RADIUS) }
+				)
+			)
+		});
 	}
 
 	if(Stroke(ALX_KEY_W).DOWN) DENSITY_H *= 1.01f;
