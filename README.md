@@ -1,193 +1,71 @@
-# Gui_FluidSim
+# Project README
 
+## Overview
+This project is a fluid simulation application built in C using Smoothed Particle Hydrodynamics (SPH). The main focus is on creating a real-time simulation of fluid dynamics.
 
-## Project Overview
+## Features
+- Real-time fluid simulation using SPH
+- Customizable window size and resolution
+- Basic control for interacting with the simulation environment
 
-This project implements specialized functionality related to fluidsim.
-
-## Core Components
-
-### Main Functionality
-- Implements core algorithms for fluidsim
-- Efficient data structures
-- Optimized performance
-- Clean code organization
-
-### Technical Features
-- C/C++ implementation
-- Dynamic memory management
-- Platform-independent design
-- Real-time capable
-
-### Architecture
-- Module separation
-- Clear interface design
-- Proper abstraction layers
-- Extensible design
-
-## Use Cases
-- Production systems
-- Educational purposes
-- Research applications
-- Performance-critical operations
-
-## Performance Characteristics
-- Optimized algorithms
-- Efficient memory usage
-- Scalable architecture
-- Minimal overhead
-
-## Implementation Quality
-- Well-organized code
-- Meaningful naming
-- Proper error handling
-- Memory management
-
-## Build and Deployment
-- Standard C/C++ compilation
-- Makefile-based building
-- Cross-platform support
-- Easy integration
-
-
-## Building the Project
+## Project Structure
+```
+Gui_FluidSim_SPHD/
+├── build/              # .exe files produced by Main.c
+├── src/                # Source code directory
+│   ├── Main.c          # Entry point of the application
+│   └── *.h             # Standalone header-based C-files without implementation
+├── Makefile.linux      # Linux Build configuration
+├── Makefile.windows    # Windows Build configuration
+├── Makefile.wine       # Wine Build configuration for cross-compiling to Windows on Linux
+└── Makefile.web        # Emscripten Build configuration for webassembly
+```
 
 ### Prerequisites
-- C/C++ Compiler (GCC, Clang, or MSVC)
+- C/C++ Compiler and Debugger (GCC, Clang)
 - Make utility
 - Standard development tools
+- Libraries needed:
+  - X11 for window management on Linux
+  - Windows API libraries for cross-compilation to Windows on Linux
 
-### Build Steps
+## Build & Run
+To build the project, navigate to the project directory and run the appropriate makefile based on your operating system:
 
-1. Navigate to project directory:
+### Linux
 ```bash
-cd Gui_FluidSim
+make -f Makefile.linux all
 ```
 
-2. Build the project:
+### Windows
 ```bash
-make -f Makefile.(os) all
+make -f Makefile.windows all
 ```
 
-3. For clean rebuild:
+### Wine (Cross-compile for Windows)
 ```bash
-make -f Makefile.(os) clean
-make -f Makefile.(os) all
+make -f Makefile.wine all
 ```
 
-4. If there are ./bin and ./libs directories, build libs with:
+### WebAssembly
 ```bash
-make -f Makefile.(os) cleanlib
-make -f Makefile.(os) lib
+make -f Makefile.web all
 ```
 
-### Build Options
+For clean rebuild:
 ```bash
-make -f Makefile.(os) all         # build output
-make -f Makefile.(os) do        # build + exe output
-make -f Makefile.(os) clean   # Remove build artifacts
+make -f Makefile.linux clean
+make -f Makefile.linux all
 ```
 
-## Running the Project
+Build Options
+- `make -f Makefile.(os) all`: build output
+- `make -f Makefile.(os) do`: build + exe output
+- `make -f Makefile.(os) clean`: Remove build artifacts
 
-Execute the compiled binary:
-
+To execute the built application:
 ```bash
-./build/Main(.exe)
+make -f Makefile.linux exe
 ```
 
-Or using make:
-```bash
-make -f Makefile.(os) exe
-```
-
-## Project Organization
-
-```
-Gui_FluidSim/
-├── src/
-│   ├── Main.c          # Entry point
-│   └── *.c             # Implementation files
-├── Makefile            # Build configuration
-└── README.md           # This file
-```
-
-## Technical Details
-
-### Language: C/C++
-- Performance-oriented
-- Direct hardware access where needed
-- Memory efficient
-- Widely portable
-
-### Key Technologies
-- Standard C library
-- System-specific libraries as needed
-- Algorithm optimization
-- Efficient data structures
-
-### Code Quality
-- Clean, readable implementation
-- Proper error handling
-- Resource management
-- Well-documented algorithms
-
-## Development Notes
-
-### Architecture Decisions
-- Modular design for reusability
-- Efficient algorithms for performance
-- Clear separation of concerns
-- Extensible structure
-
-### Performance Optimizations
-- Algorithm efficiency
-- Memory layout optimization
-- Cache-conscious programming
-- Minimal overhead
-
-### Portability
-- Cross-platform compatible
-- Platform-specific optimizations where possible
-- Standard library usage
-- No external dependencies (where feasible)
-
-## Troubleshooting
-
-### Build Issues
-- Ensure compiler is installed
-- Check file paths and permissions
-- Verify Make installation
-- Review compiler error messages
-
-### Runtime Issues
-- Check input data validity
-- Verify file accessibility
-- Ensure sufficient memory
-- Review output format
-
-### Performance Issues
-- Check compiler optimization flags
-- Profile hot code paths
-- Review algorithm complexity
-- Consider input size
-
-## Future Improvements
-
-Potential enhancements:
-- Additional optimization opportunities
-- Extended functionality
-- Platform-specific optimizations
-- Performance profiling
-
-## References
-
-For technical background:
-- Algorithm textbooks
-- Computer science references
-- Language documentation
-- Online educational resources
-
----
-
-*Project implementing practical algorithms and data structures in C/C++*
+This README provides a basic overview of how to build and run the project on different platforms. For more detailed information, please refer to the source code and makefiles.
