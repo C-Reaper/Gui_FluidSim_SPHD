@@ -5,7 +5,7 @@
 
 // Based on Smoothed-particle hydrodynamics
 
-#define FLUID_ITER
+//#define FLUID_ITER
 #include "/home/codeleaded/System/Static/Library/Fluid.h"
 
 TransformedView tv;
@@ -22,7 +22,7 @@ void Setup(AlxWindow* w){
 	);
 	fluid = Fluid_New();
 
-	DENSITY_H = (1.0f * RADIUS);
+	DENSITY_H = (2.0f * RADIUS);
 	DENSITY_WATER = 3000.0f;
 	MASS_PARTICLE = 12000.0f;//(DENSITY_WATER * RADIUS_TERM);
 	DENSITY_K = 10000.0f;
@@ -34,7 +34,8 @@ void Update(AlxWindow* w){
 	TransformedView_HandlePanZoom(&tv,window.Strokes,GetMouse());
 	Vec2 mouse = TransformedView_ScreenWorldPos(&tv,GetMouse());
 
-	if(Stroke(ALX_KEY_Y).PRESSED){
+	// PRESSED
+	if(Stroke(ALX_KEY_Y).DOWN){
 		Fluid_Insert(&fluid,(FluidPoint[]){
 			FluidPoint_New(
 				Vec2_Add(
@@ -76,8 +77,8 @@ void Update(AlxWindow* w){
 	Fluid_CalcFP(&fluid,&fp);
 
 
-	//Fluid_Update(&fluid,w->ElapsedTime);
-	Fluid_Update(&fluid,0.01f);
+	Fluid_Update(&fluid,w->ElapsedTime);
+	//Fluid_Update(&fluid,0.01f);
 
 	Clear(BLACK);
 
